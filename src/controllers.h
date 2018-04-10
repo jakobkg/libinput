@@ -62,19 +62,22 @@ uint32_t buttons_released[5]; // Released buttons
 f32 stickPositions[5][2][2];
 /* State of joysticks.
 First index is controller, second is stick (L and R) and third is direction (X or Y)
-These are to be read with checkStick(stick, stickDirection, threshold)*/
+These are to be read with checkStick(stick, stickDirection, threshold)
+TODO: Implement function to write raw stick data to location of a pointer for direct reading*/
 
-void initControllers();
-void deinitControllers();
-void disconnectControllers();
-void pingControllers();
-void updateControllers();
-bool isWiimote(KPADData *padData);
-bool hasNunchuck(KPADData *padData);
-bool isClassicController(KPADData *padData);
-bool isProController(KPADData *padData);
-bool checkStick(u8 stick, u8 stickDirection, f32 threshold);
-bool checkButton(int button, int state);
+void initControllers();                                         // Initializes controllers, uses a function from dynamic_libs to do so
+void deinitControllers();                                       // Deinitializes controllers. Currently disconnects them, as a deinit method is not known. Sets all used memory to 0
+void disconnectControllers();                                   // Turns off all connected wireless controllers that are not the gamepad
+void pingControllers();                                         // Checks the "slots" for all wireless controllers that are not the gamepad, and writes response to padErrors[]
+void updateControllers();                                       // Grabs button and joystick states from all connected wireless controllers and writes them to vpad and pads[]
+bool isWiimote(KPADData *padData);                              // Looks at an entry in pads[] and returns whether the controller is a wiimote or not
+bool hasNunchuck(KPADData *padData);                            // Looks at an entry in pads[] and returns whether the controller has a nunchuck attached or not
+bool isClassicController(KPADData *padData);                    // Looks at an entry in pads[] and returns whether the controller is the Wii Classic Controller or not
+bool isProController(KPADData *padData);                        // Looks at an entry in pads[] and returns whether the controller is a Pro Controller or not
+bool checkStick(u8 stick, u8 stickDirection, f32 threshold);    // Checks one or both joysticks (see enum sticks) of all controllers
+                                                                // and returns whether the stick is being held past a threshold (range 0 - 1) in a given direction (see enum stickDirections)
+                                                                // For example, checkStick(STICK_L, DIR_UP, 0.7) returns whether any controller has its left stick pushed more than 70% up
+bool checkButton(int button, int state);                        // Checks one, or any, button (see enum buttons) and returns whether or not the button is in a given state (see enum buttonStates)
 
 #ifdef __cplusplus
     }

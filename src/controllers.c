@@ -5,11 +5,11 @@
 #include "controllers.h"
 
 s32 vpadError = -1;
-VPADData vpad;
+VPADData vpad;      // This is where the state of all things gamepad lives
 
 s32 padErrors[4];
 u32 padTypes[4];
-KPADData pads[4];
+KPADData pads[4];   // This is where all other wireless controller states live (wiimote, pro controller, etc)
 
 void initControllers() {
     KPADInit();
@@ -116,7 +116,7 @@ bool checkStick(u8 stick, u8 stickDirection, f32 threshold) {
     if (stick == STICK_BOTH) {
         return checkStick(STICK_L, stickDirection, threshold) \
                || checkStick(STICK_R, stickDirection, threshold);
-    }
+    } // Should be self-explanatory. Reword to STICK_EITHER for clarity?
 
     for (u8 i = 0; i < 4; i++) {
         // Check the sticks on all controllers that aren't Wiimotes

@@ -6,11 +6,14 @@ Libinput currently handles the gamepad, Wii U Pro Controller, the Wiimote (butto
 
 Support for HID devices like the Gamecube adapter is TODO.
 
+If you intend to read through the code, I **_strongly_** recommend using an editor which allows you to collapse blocks, there are a few nasty switch-case-blocks in here that are not for the feint of heart.
+
 ## Dependencies
 
 This library uses features from [dynamic_libs](https://github.com/Maschell/dynamic_libs/tree/lib) and [libutils](https://github.com/Maschell/libutils), so make sure these are both installed before trying to use libinput.
 
 ## Usage
+
 Compile using
 ```
 make && make install
