@@ -2,6 +2,10 @@
 
 This is a library for handling controller inputs on the Wii U.
 
+Libinput currently handles the gamepad, Wii U Pro Controller, the Wiimote (buttons only, no motion) and its common peripherals like the Nunchuck, Wii Classic Controller and Wii Classic Controller Pro.
+
+Support for HID devices like the Gamecube adapter is TODO.
+
 ## Dependencies
 
 This library uses features from [dynamic_libs](https://github.com/Maschell/dynamic_libs/tree/lib) and [libutils](https://github.com/Maschell/libutils), so make sure these are both installed before trying to use libinput.
