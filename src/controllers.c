@@ -37,6 +37,12 @@ void disconnectControllers() {
 	memset(pads, 0, sizeof(KPADData) * 4);
 	memset(padErrors, 0, sizeof(s32) * 4);
 	memset(padTypes, 0, sizeof(u32) * 4);
+
+    memset(buttons_hold, 0, sizeof(uint32_t) * 5)
+    memset(buttons_pressed, 0, sizeof(uint32_t) * 5)
+    memset(buttons_released, 0, sizeof(uint32_t) * 5)
+
+    memset(stickPositions, 0, sizeof(f32) * 20)
 }
 
 void pingControllers() {

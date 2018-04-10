@@ -63,7 +63,7 @@ f32 stickPositions[5][2][2];
 /* State of joysticks.
 First index is controller, second is stick (L and R) and third is direction (X or Y)
 These are to be read with checkStick(stick, stickDirection, threshold)
-TODO: Implement function to write raw stick data to location of a pointer for direct reading*/
+TODO: Implement function to write raw stick data to location of a pointer for direct reading */
 
 void initControllers();                                         // Initializes controllers, uses a function from dynamic_libs to do so
 void deinitControllers();                                       // Deinitializes controllers. Currently disconnects them, as a deinit method is not known. Sets all used memory to 0
