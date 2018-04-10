@@ -17,12 +17,12 @@ make && make install
 ```
 to install to your Portlibs folder, then make sure your Makefile has the include path
 ```
-$(PORTLIBS)/include/libutils
+$(PORTLIBS)/include/libinput
 ```
 
 for example by adding
 ```
-export INCLUDE	:= [...]  -I$(PORTLIBS)/include/libutils
+export INCLUDE	:= [...]  -I$(PORTLIBS)/include/libinput
 ```
 
 Finally, make sure you link all libraries necessary for libinput to work
