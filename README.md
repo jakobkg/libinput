@@ -29,4 +29,5 @@ Finally, make sure you link all libraries necessary for libinput to work
 ## Credits
 
 [Maschell](https://github.com/Maschell/) and any other contributors for libutils, dynamic_libs, from which I stole my Makefile
+
 Nintendo for making the Wii U gamepad so horrible I could use it to motivate myself to do this
