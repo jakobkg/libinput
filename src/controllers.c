@@ -12,15 +12,32 @@ u32 padTypes[4];
 KPADData pads[4];   // This is where all other wireless controller states live (wiimote, pro controller, etc)
 
 void initControllers() {
-    KPADInit();
+    // KPADInit() is called within this, so it's redundant to do both.
+    InitPadScoreFunctionPointers();
 }
 
 void deinitControllers() {
     // Super jankily disconnect all controllers so they can reconnect and the game can use them
-    // TODO: Find the padscore deinit function and implement
+    // TODO: Find the padscore deinit function (found, it's void KPADShutdown(void)) and implement
     disconnectControllers();
 }
 
+void ControllerRead(ControllerData *data) {
+    // Read all controllers of one or more specific types and OR their data together
+    ControllerReadEx(data, CONTROLLER_TYPE_ALL);
+}
+
+void ControllerReadEx(ControllerData *data, u16 filter) {
+    for (size_t wpadchan = 0; wpadchan < 4; wpadchan++) {
+        error = WPADProbe()
+    }
+}
+
+void remapInput(ControllerData *data) {
+    if (&data.controller_type & CONTROLLER_TYPE_WIIMOTE) {
+
+    }
+}
 
 void disconnectControllers() {
     for(int i = 0; i < 4; i++) {
@@ -102,20 +119,20 @@ void updateControllers() {
     }
 }
 
-bool isWiimote(KPADData *padData){
-    return padData->device_type == 0 || padData->device_type == 1 || padData->device_type == 5 || padData->device_type == 6;
+bool isWiimote(ControllerData *data){
+    return data->controller_type == 0 || data->controller_type == 1 || data->controller_type == 5 || data->controller_type == 6;
 }
 
-bool hasNunchuck(KPADData *padData){
-    return padData->device_type == 1 || padData->device_type == 6;
+bool hasNunchuck(ControllerData *data){
+    return data->controller_type == 1 || data->controller_type == 6;
 }
 
-bool isClassicController(KPADData *padData){
-    return padData->device_type == 2 || padData->device_type == 7;
+bool isClassicController(ControllerData *data){
+    return data->controller_type == 2 || data->controller_type == 7;
 }
 
-bool isProController(KPADData *padData){
-    return padData->device_type == 31;
+bool isProController(ControllerData *data){
+    return data->controller_type == 31;
 }
 
 bool checkStick(u8 stick, u8 stickDirection, f32 threshold) {
